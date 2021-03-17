@@ -1,0 +1,10 @@
+# Object file
+*.o
+
+# Executables
+*.exe
+*.out
+
+# Vim undo files
+*.un~
+
