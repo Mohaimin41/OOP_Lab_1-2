@@ -15,8 +15,8 @@ public:
         y = b;
     }
     Point() {
-	x = 0;
-	y = 0;
+        x = 0;
+        y = 0;
     }
     void set( int a, int b ) {
         x = a;
@@ -36,18 +36,23 @@ public:
 class Line {
     Point p1, p2;
 public:
-        Line( int a1, int b1, int a2, int b2 ) {
+    Line( int a1, int b1, int a2, int b2 ) {
         p1.set( a1, b1 );
         p2.set( a2, b2 );
     }
 
-     	void printLength() {
+    Line() {
+        p1.set( 0, 0 );
+        p2.set( 0, 0 );
+    }
+
+    void printLength() {
         int* P1 = p1.get(), *P2 = p2.get();
         double length = sqrt( ( *( P1 ) - * ( P2 ) ) * ( *( P1 ) - * ( P2 ) ) +
                               ( *( P1 + 1 ) - * ( P2 + 1 ) ) * ( *( P1 + 1 ) - * ( P2 + 1 ) ) );
         cout << "Length: " << length << endl;
-	free( P1 );
-	free( P2 );
+        free( P1 );
+        free( P2 );
     }
 };
 
@@ -66,10 +71,14 @@ public:
     Circle( int r ) {
         radius = r;
     }
+    Circle() {
+        p.set( 0, 0 );
+        radius = 0;
+    }
     void update( int a, int b ) {
         int *center = p.get();
         p.set( *( center ) + a, *( center + 1 ) + b );
- 	free( center );
+        free( center );
     }
     void update( int r ) {
         radius += r;
@@ -78,7 +87,7 @@ public:
         int *center = p.get();
         p.set( *( center ) + a, *( center + 1 ) + b );
         radius += r;
-	free( center );
+        free( center );
     }
 
     void print() {
@@ -95,10 +104,6 @@ int main() {
     p.print();
     cout << endl << "Circle Display" << endl;
     c.print();
-    cout << endl;
-    Line l( 0, 0, 4, 0 );
-    cout << endl << "Line length display" << endl;
-    l.printLength();
     cout << endl;
 
 //First update
@@ -126,5 +131,11 @@ int main() {
     c.update( 2, 2, 2 );
     c.print();
     cout << endl;
+// Line update
+    Line l( 0, 4, 4, 0 );
+    cout << endl << "Line length display" << endl;
+    l.printLength();
+    cout << endl;
+
     return 0;
 }
