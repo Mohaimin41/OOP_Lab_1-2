@@ -7,4 +7,5 @@
 
 # Vim undo files
 *.un~
+*.cpp~
 
