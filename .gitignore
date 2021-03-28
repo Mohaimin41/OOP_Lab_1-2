@@ -9,3 +9,7 @@
 *.un~
 *.cpp~
 
+# Archives
+*.zip
+*.7zip
+
