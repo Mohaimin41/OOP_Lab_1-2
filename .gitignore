@@ -15,3 +15,6 @@
 
 # java class files
 *.class
+
+# IntelliJ iml
+*.iml
