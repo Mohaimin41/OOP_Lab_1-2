@@ -13,3 +13,5 @@
 *.zip
 *.7zip
 
+# java class files
+*.class
