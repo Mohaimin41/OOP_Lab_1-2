@@ -25,6 +25,14 @@ public class Match{
         // you can add your code here if required
         // a team gets 2 points for winning and 0 point for losing
         // both teams get 1 point each in case of a draw
+        if ( homeTeamScore > awayTeamScore ) {
+            homeTeam.addPoint(2);
+        } else if ( awayTeamScore > homeTeamScore ) {
+            awayTeam.addPoint(2);
+        } else {
+            homeTeam.addPoint(1);
+            awayTeam.addPoint(1);
+        }
     }
 
     public void showResult(){
@@ -34,13 +42,22 @@ public class Match{
         }
         // exactly one of the following three print statements should be executed
         // add condition to check if the match is drawn, the home team won or the away team won
+        if ( homeTeamScore == awayTeamScore ) {
             System.out.println("Match drawn. " + homeTeam.getName() + " " + homeTeamScore + "-" + awayTeamScore + " " + awayTeam.getName());
-
+        } else if ( homeTeamScore > awayTeamScore ) {
             System.out.println(homeTeam.getName() + " wins. " + homeTeam.getName() + " " + homeTeamScore + "-" + awayTeamScore + " " + awayTeam.getName());
-
+        } else {
             System.out.println(awayTeam.getName() + " wins. " + homeTeam.getName() + " " + homeTeamScore + "-" + awayTeamScore + " " + awayTeam.getName());
-
+        }
     }
 
     // add your methods here, if required
+
+    public int getHomeTeamScore() {
+        return homeTeamScore;
+    }
+
+    public int getAwayTeamScore() {
+        return awayTeamScore;
+    }
 }

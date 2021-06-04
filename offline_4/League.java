@@ -4,12 +4,14 @@ public class League {
     private int clubCount;
     // add your variables here, if required
     private String name;
-    private Club [] clubs = new Club[5];
-
+    private Club [] clubs;
+    //private int [] points;
     public League() {
         // assume a league can have at most 5 clubs, add code for initialization accordingly
         clubCount = 0;
         matchCount = 0;
+        clubs = new Club[5];
+        //points = new int[5];
     }
 
     public void printLeagueInfo(){
@@ -21,7 +23,7 @@ public class League {
         System.out.println("Clubs:");
         // print the name of the clubs of this league, each one on a line
         for ( int i = 0; i < clubCount; i++ ) {
-            System.out.println(clubs[i].getClubName());
+            System.out.println(clubs[i].getName());
         }
     }
 
@@ -34,6 +36,9 @@ public class League {
                 // check the constructor of the Match class and add your code here
                 // note that there will be two matches between club A and club B
                 // in the first match, club A will play as the home team and in the second match, as the away team
+                if ( i != j ) {
+                    matches[matchNo++] = new Match( matchNo, clubs[i], clubs[j] );
+                }
             }
         }
     }
@@ -50,8 +55,31 @@ public class League {
         // check the given sample output for clarification
         // (carefully observe the output of showStandings() followed by printLeagueInfo() method calls
         // you can use additional arrays if needed
+
+        int [] sortIndex = new int[clubCount];
+        for ( int i = 0; i < clubCount; i++ )
+            sortIndex[i] = i;
+
+        //selection sort over clubs points
+
+        for ( int i = 0; i < clubCount - 1; i++ ) {
+            int idx = i, tmp, max = clubs[sortIndex[i]].getPoint();
+            for ( int j = i + 1; j < clubCount; j++ ) {
+                if ( clubs[sortIndex[j]].getPoint() > max ) {
+                    idx = j;
+                    max = clubs[sortIndex[j]].getPoint();
+                }
+            }
+            tmp = sortIndex[i];
+            sortIndex[i] = sortIndex[idx];
+            sortIndex[idx] = tmp;
+        }
+
         System.out.println("Sl. - Club - Points");
         // print the clubs in descending order of points
+        for ( int i = 0; i < clubCount; i++ ) {
+            System.out.println(i+1 + ". " + clubs[sortIndex[i]].getName() + " " + clubs[sortIndex[i]].getPoint());
+        }
     }
 
     // add your methods here, if required
@@ -63,12 +91,28 @@ public class League {
         clubs[clubCount++] = club;
     }
 
-    public void removeClub(Club clubs ) {
+    public void removeClub(Club club ) {
+        int rmvdIdx = 0;
+        for ( int i = 0; i < clubCount; i++ ) {
+            if( club.getId() == clubs[i].getId() ) {
+                rmvdIdx = i;
+                break;
+            }
+        }
 
+        for ( int i = 0, j = 0; i < clubCount - 1; i++ ) {
+            if ( i == rmvdIdx ) {
+                j++;
+            }
+            clubs[i] = clubs[j++];
+
+        }
+
+        clubCount--;
     }
 
     public void printMatches() {
-
+        for ( int i = 0; i < matchCount; i++ )
+            matches[i].showResult();
     }
 }
-
