@@ -8,6 +8,8 @@ public class Match{
     private int homeTeamScore;
     private int awayTeamScore;
     // add your variables here, if required
+    private int winningTeam;// 1 for home team, 2 for away team, 0 for tie
+
 
     // you are not allowed to write any more constructors
     public Match(int matchNo, Club homeTeam, Club awayTeam){
@@ -26,12 +28,11 @@ public class Match{
         // a team gets 2 points for winning and 0 point for losing
         // both teams get 1 point each in case of a draw
         if ( homeTeamScore > awayTeamScore ) {
-            homeTeam.addPoint(2);
+            winningTeam = 1;
         } else if ( awayTeamScore > homeTeamScore ) {
-            awayTeam.addPoint(2);
+            winningTeam = 2;
         } else {
-            homeTeam.addPoint(1);
-            awayTeam.addPoint(1);
+            winningTeam = 0;
         }
     }
 
@@ -53,11 +54,15 @@ public class Match{
 
     // add your methods here, if required
 
-    public int getHomeTeamScore() {
-        return homeTeamScore;
+    public int getWinningTeam() {
+        return winningTeam;
     }
 
-    public int getAwayTeamScore() {
-        return awayTeamScore;
+    public Club getHomeTeam() {
+        return homeTeam;
+    }
+
+    public Club getAwayTeam() {
+        return awayTeam;
     }
 }

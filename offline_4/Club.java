@@ -13,10 +13,6 @@ public class Club {
         this.Id = Id;
     }
 
-    public void setPoint(int point) {
-        this.point = point;
-    }
-
     public void setName(String clubName) {
         this.clubName = clubName;
     }
@@ -25,15 +21,7 @@ public class Club {
         return Id;
     }
 
-    public int getPoint() {
-        return point;
-    }
-
     public String getName() {
         return clubName;
-    }
-
-    public void addPoint ( int matchPoint ) {
-        point += matchPoint;
     }
 }
