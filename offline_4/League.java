@@ -110,18 +110,21 @@ public class League {
     public void removeClub(Club club ) {
         int rmvdIdx = findClubIndex(club.getId());
 
-        for ( int i = 0, j = 0; i < clubCount - 1; i++ ) {
-            if ( i == rmvdIdx ) {
-                j++;
+        if (rmvdIdx != -1) {
+            for (int i = 0, j = 0; i < clubCount - 1; i++) {
+                if (i == rmvdIdx) {
+                    j++;
+                }
+                clubs[i] = clubs[j++];
+
             }
-            clubs[i] = clubs[j++];
 
+            clubCount--;
+            scheduleMatches();
+        } else {
+            System.out.println("Given club not found in league");
         }
-
-        clubCount--;
-        scheduleMatches();
     }
-
     public void printMatches() {
         for ( int i = 0; i < matchCount; i++ )
             matches[i].showResult();
