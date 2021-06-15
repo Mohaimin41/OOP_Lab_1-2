@@ -19,5 +19,8 @@
 # IntelliJ iml
 *.iml
 
+# IntelliJ idea folder
+.idea/
+
 # XML 
 *.xml
