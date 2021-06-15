@@ -10,6 +10,6 @@ public class RedBackSpider extends Arachnid implements Venomous{
 
     @Override
     public String toString() {
-        return super.getName() + " is a RedBackSpider," + super.toString();
-    }
+            return super.getName() + " is a RedBackSpider," + super.toString();
+        }
 }
